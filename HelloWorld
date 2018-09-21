@@ -1,0 +1,10 @@
+#include <iostream>
+using namespace std;
+int main() {
+	system("pause");
+	cout<<"Hello,World!\nHello,GUDFS!\n";
+	system("pause");
+	cout<<"      *     *\n    *    *    *\n     *       *\n       *   *\n         *\n";
+	system("pause");
+	return 0;
+}
