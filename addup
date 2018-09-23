@@ -2,13 +2,14 @@
 using namespace std;
 int main()
 {
-	int num1, num2, result;
-	cout<<"num1=";
+	float num1, num2, result;
+	cout<<"请输入一个实数num1=";
 	cin>>num1;
-	cout<<"num2=";
+	cout<<"请输入另一个实数num2=";
 	cin>>num2; 
 	result=num1+num2;
 	cout<<"num1与num2的和为：";
-	cout<<result ;
+	cout<<result<<endl ;
+	system("pause") ;
 	return 0;
 }
