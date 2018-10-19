@@ -1,0 +1,15 @@
+#include "pch.h"
+#include <iostream>
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+using namespace std;
+int main(){
+	srand(time(NULL));
+	int low, high ;
+  cin>>low>>high;
+	int rnum = rand() % (high - low + 1) + low;
+	cout << rnum<<endl;
+	system("pause");
+	return 0;
+}
