@@ -1,0 +1,13 @@
+#include <iostream> 
+#include<math.h>
+using namespace std;
+int main(){    
+int a,b,sum=0;
+cin>>a;
+for(int i=0;a!=0;i++,a=a/10){
+	b=a%10;
+	sum+=b*pow(2,i);
+}
+cout<<sum;
+return 0;
+}
