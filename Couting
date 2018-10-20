@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+int main(){    
+char a;
+int blnk=0,num=0,othr=0,letr=0;
+cout<<"请输入一串字符,换行后输入“ctrl+z”表示输入结束："<<'\n';
+while(cin.get(a)){
+	if (int(a)==32){
+		blnk++;
+	}else if(int(a)>=48&&int(a)<=57){
+		num++;
+	}else if((int(a)>=65&&int(a)<=90)||(int(a)>=97&&int(a)<=122)){
+		letr++;
+	}else{
+		othr++;
+	}
+}
+cout<<"空格有："<<blnk<<'\n'<<"数字有："<<num<<'\n'<<"字母有："<<letr<<'\n'<<"其他字符有："<<othr;
+return 0;
+}
