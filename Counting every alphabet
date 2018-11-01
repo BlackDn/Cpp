@@ -1,0 +1,75 @@
+//不区分大小写
+#include "pch.h"
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main(){
+	char in;
+	char slet[26] = { 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
+	char blet[26] = { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
+	int num[26] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	int sum = 0;
+	float rate;
+	for (int i = 1;; i++) {
+		in = cin.get();
+		if (in == '#') break;
+		for (int j = 0; j <= 25; j++) {
+			if (in == slet[j] || in == blet[j]) num[j]++;
+		}
+	}
+	for (int x = 0; x <= 25; x++) {
+		cout << "字母 " << slet[x] << " 出现的次数为：" << num[x]<<endl;
+		sum += num[x];
+	}
+	cout << "总共有字符 " << sum << " 个"<<endl;
+	for (int y=0; y <= 25; y++) {
+		rate = (num[y] *1.0/ sum) *100;
+		cout << "字母" << slet[y] << "的出现频率是：" <<fixed<<setprecision(2)<< rate << '%' << endl;
+	}
+	return 0;
+}
+
+//导入文本文件并统计
+#include "pch.h"
+#include <iostream>
+#include<iomanip>
+#include <fstream>
+#include <cstdlib>
+using namespace std;
+int main() {
+	char filename[40], ch;
+	char slet[26] = { 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
+	char blet[26] = { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
+	int num[26] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	int sum=0;
+	float rate;
+	fstream  infile;                             // A定义对象infile
+
+	cout << "Please input a filename: ";
+	cin >> filename;
+	infile.open(filename, ios::in);          // B，一般应给出第二个实参
+	if (!infile) {
+		cout << "Can not open file: " << filename << endl;
+		system("pause");
+		exit(1);
+	}
+	infile.unsetf(ios::skipws);                // C，不跳过空格
+	while (infile >> ch)                       // D，
+	{
+		for (int j = 0; j <= 25; j++) {
+			if (ch == slet[j] || ch == blet[j]) num[j]++;
+		}
+	}
+	for (int x = 0; x <= 25; x++) {
+		cout << "字母 " << slet[x] << " 出现的次数为：" << num[x] << endl;
+		sum += num[x];
+	}
+	cout << "总共有字符 " << sum << " 个" << endl;
+	for (int y = 0; y <= 25; y++) {
+		rate = (num[y] * 1.0 / sum) * 100;
+		cout << "字母" << slet[y] << "的出现频率是：" << fixed << setprecision(2) << rate << '%' << endl;
+	}
+	infile.close();                             // F 
+	system("pause");
+	return 0;
+}
