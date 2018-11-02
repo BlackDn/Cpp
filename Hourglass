@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int main() {
+	int a=7, b;     //a控制*个数
+	int  j = 0;     //b控制空格个数
+
+	for (; a >= 1; a -= 2, j++) {   //输出漏斗上半部分
+		for (int k = j; k; k--) {           //输出每行的空格
+			cout << ' ';
+		}
+		for (int b = a; b; b--) {           //输出每行的*
+			cout << '*';
+		}
+		cout << '\n';
+
+	}
+	a = 3;
+	j = 2; 
+	for (;a<=7;a+=2,j--) {     //输出漏斗下半部分
+		for (int k = j; k; k--) {
+			cout << ' ';
+		}
+		for (int b = a; b; b--) {
+			cout << '*';
+		}
+		cout << '\n';
+	}
+	return 0;
+}
