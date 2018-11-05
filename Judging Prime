@@ -1,0 +1,22 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main(){
+	int n,b,i,gg;
+	long long x;
+	cin>>n;
+	while(n--){
+	cin>>x;
+	b=sqrt(x);
+	gg=1;
+  for(i=2;i<=b;i++){
+    if(x%i==0) {
+    	gg=0;
+    	break;
+	}
+  }
+  if(x==1||gg==0) cout<<"No\n";
+  else cout<<"Yes\n";
+	}
+	return 0;
+}
