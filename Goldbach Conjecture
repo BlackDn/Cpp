@@ -1,0 +1,22 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main(){
+	bool prime(int);
+	int a,b,m;
+	cin>>m;
+		for(a=2;a<=m/2;a++) if(prime(a)){
+			b=m-a;
+			if(prime(b)){
+				cout<<m<<" = "<<a<<" + "<<b;
+				break;
+			}
+		}
+	return 0;
+}
+bool prime(int a){
+	int i,k;
+	k=(int)sqrt(a);
+	for(i=2;i<=k;i++) if (a%i==0) return false;
+	return true;
+}
