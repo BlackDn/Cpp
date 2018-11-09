@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+void trans(int);
+int main(){
+	int ten;
+	cout << "请输入一个十进制数：";
+	cin >> ten;
+	trans(ten);
+	return 0;
+}
+
+void trans(int ten) {
+	if (ten/2!=0) trans(ten / 2);
+	int n = ten % 2;
+	cout << n;
+  return;
+}
+
+------------------------------------
+
+#include <iostream>
+using namespace std;
+int a = 0, i = 1;
+void trans(int);
+int main(){
+	int ten;
+	cout << "请输入一个十进制数：";
+	cin >> ten;
+	trans(ten);
+	cout << a;
+	return 0;
+}
+
+int trans(int ten) {
+	if (ten / 2 == 0) {
+		a += (ten % 2)*i;
+		return a;
+	}
+	else {
+		a += (ten % 2)*i;
+		i*=10;
+	}
+	ten = trans(ten / 2);
+}
