@@ -1,0 +1,44 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+
+int main() {
+	int dec, n, i, a[80];
+	cout << "请输入一个十进制的数：\n";
+	cin >> dec;
+	int chu = dec;
+	for (i = 0;  chu != 0; i++) {
+		a[i] = chu % 16;
+		chu = chu / 16;
+	}
+	cout << "他的十六进制数为：\n";
+	for (int j = i - 1; j > -1; j--) {
+		switch (a[j]) {
+		case 10:
+			cout << 'A';
+			break;
+		case 11:
+			cout << 'B';
+			break;
+		case 12:
+			cout << 'C';
+			break;
+		case 13:
+			cout << 'D';
+			break;
+		case 14:
+			cout << 'E';
+			break;
+		case 15:
+			cout << 'F';
+			break;
+		default:
+			cout << a[j];
+			break;
+		}
+	}
+	if (dec == 0) {
+		cout<<0;
+	}
+	return  0;
+}
