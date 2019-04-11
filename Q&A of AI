@@ -1,0 +1,111 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <cstdio>
+
+using namespace std;
+
+void answer(string s);
+bool isIndependent(char ch);
+bool isCanyou(char ch[], int n);
+
+int main() {
+	int n;		//行数n，s存放输入的语句
+	string s;
+	cin >> n;
+	getchar();
+	for (int i = 1; i <= n; i++) {
+		getline(cin, s);
+		cout << s << endl;		//先输出原话，再输出处理后的AI回答
+		cout << "AI: ";
+		answer(s);	//处理并输出回答
+	}
+	return 0;
+}
+
+//根据s处理并输出回答
+void answer(string s) {
+	char t[3002];	//t为处理后的字符串
+	int i, j = 0;		//i定位到s的第一个非空,j表示t串的字符
+	for (i = 0; s[i] == ' '; i++) {
+		//仅仅用于定位.因为字符串有个结尾符‘\0’，所以及时字符串全空，到最后的结尾符也会停止循环
+	}
+	while (s[i] != '\0') {	//进行输入
+		if (s[i] == ' '&&s[i - 1] == ' ') {		//跳过多余的空格
+			i++;
+			continue;
+		}
+		if (s[i] == '?') {		//将输入的问号变为感叹号
+			t[j] = '!';
+			i++;
+			j++;
+			continue;
+		}
+
+		if (s[i] != 'I') {		//将除了I的大写变小写
+			t[j] = tolower(s[i]);
+			i++;
+			j++;
+		}
+		else {
+			t[j] = s[i];	//将s串的非空或者单个空格给到t串,之后分别+1进行下一轮输入
+			j++;
+			i++;
+		}
+	}
+	t[j] = '\0';	//为t串末尾增加结尾符
+
+	//I,me变成you; can you 换成 I can 
+	j = 0;
+	while (t[j] != '\0') {
+		//独立的I,意味着左右均是分隔符
+		if (t[j] == 'I' && (j == 0 || isIndependent(t[j - 1])) && isIndependent(t[j + 1])) {
+			cout << "you";
+			j++;
+			continue;
+		}
+		//独立的me
+		if (t[j] == 'm'&&t[j + 1] == 'e' && (j == 0 || isIndependent(t[j - 1])) && isIndependent(t[j + 2])) {
+			cout << "you";
+			j += 2;
+			continue;
+		}
+
+		//独立的can you
+		if (isCanyou(t, j)) {
+			cout << "I can";
+			j += 7;
+			continue;
+		}
+
+		//如果是标点前的空格就不输出
+		if (t[j] == ' '&&isIndependent(t[j+1])) {
+			j++;
+			continue;
+		}
+		cout << t[j];
+		j++;
+	}
+	cout << endl;
+}
+
+//判断字符是否为分隔符
+bool isIndependent(char ch) {
+	bool result = true;
+	ch = tolower(ch);
+	if ((ch >= '0' && ch <= '9') || (ch >= 'a'&&ch <= 'z')) {
+		result = false;
+	}
+	return result;
+}
+
+//判断是否为独立的can you
+bool isCanyou(char ch[],int n) {
+	bool result = false;
+	if (ch[n] == 'c'&&ch[n + 1] == 'a'&&ch[n + 2] == 'n'&&ch[n + 3]==' ' && ch[n + 4] == 'y'&&ch[n + 5] == 'o'&&ch[n + 6] == 'u') {
+		if ((n == 0 || isIndependent(ch[n - 1])) && isIndependent(ch[n + 7])) {
+			result = true;
+		}
+	}
+	return result;
+}
