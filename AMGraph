@@ -27,7 +27,7 @@ void Create(AMGraph &G);
 int Locate(AMGraph G, char v);
 void DFS(AMGraph G, int v);
 
-bool visited[10] = { false };
+bool visited[10] = { false };	//已经被搜索到的顶点变为true,避免重复搜索
 
 int main() {
 	AMGraph graph;
@@ -51,7 +51,7 @@ void Create(AMGraph &G) {
 	int x = 0, y = 0, w = 0;	//输入的边的权w，对应行标x，列表y
 
 	cin >> G.vexnum >> G.arcnum;	//总顶点、边数
-	for (int i = 0; i < G.vexnum; i++) {	//依次输入节点信息
+	for (int i = 0; i < G.vexnum; i++) {	//依次输入顶点信息
 		cin >> G.vex[i];
 	}
 	//初始化邻接矩阵，边均为0
@@ -83,7 +83,7 @@ int Locate(AMGraph G, char v) {
 	return result;
 }
 
-//从编号为v的节点开始深度优先搜索并输出节点名
+//从编号为v的顶点开始深度优先搜索并输出顶点名
 void DFS(AMGraph G, int v) {
 	cout << G.vex[v] << endl;
 	visited[v] = true;
